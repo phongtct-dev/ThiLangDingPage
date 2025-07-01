@@ -1,5 +1,7 @@
+/* Nhập font từ Google Fonts để sử dụng cho giao diện */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap');
 
+/* Định nghĩa các biến CSS để tái sử dụng màu sắc và hiệu ứng */
 :root {
     --primary-color: #007bff;
     /* Blue */
@@ -24,7 +26,7 @@
 
 
 
-/* Base Styles */
+/* Reset mặc định để đảm bảo giao diện nhất quán */
 * {
     margin: 0;
     padding: 0;
@@ -41,7 +43,7 @@ body {
     color: var(--text-color);
     background-color: var(--white);
     overflow-x: hidden;
-    /* Prevent horizontal scroll from AOS animations */
+    /*  Ngăn cuộn ngang do hiệu ứng AOS*/
 }
 
 .container {
@@ -239,8 +241,6 @@ p {
     width: 30px;
     height: 20px;
     padding: 0;
-    background-color: red;
-    /* test dễ thấy */
 }
 
 .menu-toggle span {
@@ -270,7 +270,6 @@ p {
     color: var(--white);
     padding: 150px 0 100px 0;
     margin-top: 70px;
-    /* Offset for fixed header */
     position: relative;
     overflow: hidden;
 }
@@ -360,7 +359,7 @@ p {
 
 /*  */
 
-/* Meaning Section */
+/* Phần Ý Nghĩa, sử grid flex */
 .meaning-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -375,6 +374,7 @@ p {
     box-shadow: var(--shadow-light);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Hiệu ứng nâng thẻ khi hover */
 }
 
 .meaning-card:hover {
@@ -399,7 +399,7 @@ p {
     color: var(--light-text-color);
 }
 
-/* Goals Section */
+/* Phần Mục Tiêu */
 .bg-light {
     background-color: var(--bg-light);
 }
@@ -435,7 +435,7 @@ p {
     color: var(--light-text-color);
 }
 
-/* How to Participate Section */
+/* Section Cách Tham Gia */
 .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -506,7 +506,7 @@ p {
     font-size: 1.1rem;
 }
 
-/* Placeholder icons for content types */
+/* Biểu tượng placeholder cho các loại nội dung */
 .icon-location::before {
     content: '📍';
 }
@@ -528,7 +528,8 @@ p {
 }
 
 /*  */
-/* Submission Entries Section */
+
+/* Phần Bài Dự Thi, sử dụng lưới linh hoạt */
 .submission-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -541,7 +542,6 @@ p {
     border-radius: 15px;
     box-shadow: var(--shadow-light);
     overflow: hidden;
-    /* Ensures image corners are rounded */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -555,9 +555,7 @@ p {
 .submission-card img {
     width: 100%;
     height: 200px;
-    /* Fixed height for images */
     object-fit: cover;
-    /* Cover the area without distortion */
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -565,7 +563,6 @@ p {
 .submission-card .card-content {
     padding: 20px;
     flex-grow: 1;
-    /* Allows content to take available space */
     display: flex;
     flex-direction: column;
 }
@@ -581,7 +578,6 @@ p {
     color: var(--light-text-color);
     margin-bottom: 15px;
     flex-grow: 1;
-    /* Push author to bottom */
 }
 
 .submission-card .author {
@@ -589,13 +585,13 @@ p {
     color: var(--text-color);
     font-weight: 600;
     margin-top: auto;
-    /* Push to bottom */
+
     display: flex;
-    /* Added for flex layout */
+
     justify-content: space-between;
-    /* Added to push items to ends */
+
     align-items: center;
-    /* Added for vertical alignment */
+
 }
 
 .submission-card .author .author-info {
@@ -626,17 +622,16 @@ p {
     margin-bottom: 3rem;
 }
 
-/* New Form Styles for Registration Section */
+/*  Định dạng form đăng ký*/
 .registration-form {
     max-width: 600px;
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.1);
-    /* Slightly transparent white background */
+
     padding: 40px;
     border-radius: 15px;
     box-shadow: var(--shadow-medium);
     text-align: left;
-    /* Align form elements to the left */
 }
 
 .registration-form .form-group {
@@ -648,7 +643,7 @@ p {
     margin-bottom: 8px;
     font-weight: 600;
     color: var(--white);
-    /* Label color for dark background */
+
     font-size: 1.1rem;
 }
 
@@ -683,10 +678,10 @@ p {
     box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
 }
 
-/* Specific styling for file input to make it look better */
+
 .registration-form input[type="file"] {
     padding: 10px 15px;
-    /* Adjust padding for file input */
+
     background-color: rgba(255, 255, 255, 0.95);
     cursor: pointer;
 }
@@ -730,11 +725,10 @@ p {
 
 .registration-form .btn-secondary {
     width: auto;
-    /* Override potential full width from other button styles */
+
     margin-top: 10px;
-    /* Space above the button */
     display: block;
-    /* Make button a block element to center it */
+
     margin-left: auto;
     margin-right: auto;
 }
@@ -744,24 +738,24 @@ p {
     background-color: var(--bg-dark);
     color: var(--white);
     padding: 50px 0;
-    /* Increased padding for better spacing */
+
     font-size: 0.9rem;
 }
 
 .main-footer .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    /* Adjust column widths */
+
     gap: 40px;
-    /* Space between columns */
+
     text-align: left;
-    /* Default text alignment for columns */
+
     align-items: start;
-    /* Align items to the start of their grid area */
+
 }
 
 .main-footer .footer-col {
-    /* Base styles for footer columns */
+    /* Kiểu cơ bản cho các cột footer */
 }
 
 .main-footer .footer-info .logo {
@@ -772,16 +766,16 @@ p {
 .main-footer .footer-info .logo a {
     font-family: 'Merriweather', serif;
     font-size: 1.8rem;
-    /* Consistent with header logo */
+
     font-weight: 700;
     color: var(--white);
-    /* Logo color for dark background */
+
     transition: color 0.3s ease;
 }
 
 .main-footer .footer-info .logo a:hover {
     color: var(--accent-color);
-    /* Hover color for logo */
+
 }
 
 .main-footer .footer-info p {
@@ -794,7 +788,7 @@ p {
     font-size: 1.2rem;
     margin-bottom: 15px;
     font-family: 'Inter', sans-serif;
-    /* Use Inter for headings in footer columns */
+
     font-weight: 600;
 }
 
