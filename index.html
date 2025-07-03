@@ -12,64 +12,117 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-
-    <header class="main-header" data-aos="fade-down" data-aos-duration="800">
-        <div class="container">
-            <div class="logo">
-                <a href="#hero">Hành Trình Quê Hương</a>
+    <!-- Hero Section với Slideshow -->
+    <section id="hero" class="hero-section">
+        <!-- Header được đặt bên trong Hero Section -->
+        <header class="main-header" id="mainHeader" data-aos="fade-down" data-aos-duration="800">
+            <div class="container">
+                <div class="logo">
+                    <a href="#hero">Hành Trình Quê Hương</a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#y-nghia">Ý Nghĩa</a></li>
+                        <li><a href="#muc-tieu">Mục Tiêu</a></li>
+                        <li><a href="#cach-tham-gia">Cách Tham Gia</a></li>
+                        <li><a href="#bai-du-thi">Bài Dự Thi</a></li>
+                        <li><a href="#dang-ky" class="btn-nav">Đăng Ký</a></li>
+                    </ul>
+                </nav>
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#y-nghia">Ý Nghĩa</a></li>
-                    <li><a href="#muc-tieu">Mục Tiêu</a></li>
-                    <li><a href="#cach-tham-gia">Cách Tham Gia</a></li>
-                    <li><a href="#bai-du-thi">Bài Dự Thi</a></li>
-                    <li><a href="#dang-ky" class="btn-nav">Đăng Ký</a></li>
-                </ul>
-            </nav>
-            <button class="menu-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <!-- Hero Section: Phần giới thiệu chính -->
-        <section id="hero" class="hero-section">
-            <div class="hero-video-container">
-                <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
-                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-                    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
-                    <!-- Fallback for browsers that don't support video -->
-                    Your browser does not support the video tag.
-                </video>
-                <div class="hero-video-overlay"></div>
+        <!-- Swiper Container cho Slideshow -->
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                
+                <!-- Slide 1: Video Background -->
+                <div class="swiper-slide hero-slide video-slide">
+                    <!-- Container cho video background -->
+                    <div class="hero-video-container">
+                        <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="hero-video-overlay"></div>
+                    </div>
+                    
+                    <!-- Nội dung slide 1 -->
+                    <div class="container hero-content-wrapper">
+                        <div class="hero-content hero-content-left">
+                            <h1 data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
+                                Hành Trình Quê Hương: Nơi Ký Ức Bắt Đầu
+                            </h1>
+                            <p class="subtitle" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
+                                Khám Phá, Chia Sẻ và Kết Nối Cùng Quê Hương Việt Nam
+                            </p>
+                            <a href="#dang-ky" class="btn btn-primary" data-aos="fade-right" data-aos-delay="500" data-aos-duration="1000">
+                                Tham Gia Ngay
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Nút điều khiển âm thanh (chỉ hiển thị trên slide video) -->
+                    <button id="soundToggle" class="sound-toggle" aria-label="Toggle sound">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+
+                <!-- Slide 2: Đà Lạt -->
+                <div class="swiper-slide hero-slide image-slide" style="background-image: url('https://images.pexels.com/photos/2161467/pexels-photo-2161467.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');">
+                    <div class="hero-image-overlay"></div>
+                    <div class="container hero-content-wrapper">
+                        <div class="hero-content hero-content-left">
+                            <h1 data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
+                                Đà Lạt - Thành Phố Ngàn Hoa
+                            </h1>
+                            <p class="subtitle" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
+                                Khám phá vẻ đẹp thơ mộng của cao nguyên Lâm Đồng với khí hậu mát mẻ quanh năm
+                            </p>
+                            <a href="#dang-ky" class="btn btn-primary" data-aos="fade-right" data-aos-delay="500" data-aos-duration="1000">
+                                Tham Gia Ngay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Vịnh Hạ Long -->
+                <div class="swiper-slide hero-slide image-slide" style="background-image: url('https://images.pexels.com/photos/2161467/pexels-photo-2161467.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');">
+                    <div class="hero-image-overlay"></div>
+                    <div class="container hero-content-wrapper">
+                        <div class="hero-content hero-content-left">
+                            <h1 data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
+                                Vịnh Hạ Long - Kỳ Quan Thiên Nhiên
+                            </h1>
+                            <p class="subtitle" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
+                                Chiêm ngưỡng di sản thiên nhiên thế giới với hàng ngàn đảo đá vôi huyền ảo
+                            </p>
+                            <a href="#dang-ky" class="btn btn-primary" data-aos="fade-right" data-aos-delay="500" data-aos-duration="1000">
+                                Tham Gia Ngay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             
-            <div class="container hero-content-wrapper">
-                <div class="hero-content">
-                    <h1 data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">Hành Trình Quê Hương: Nơi Ký Ức
-                        Bắt Đầu</h1>
-                    <p class="subtitle" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">Khám Phá, Chia
-                        Sẻ và Kết Nối Cùng Quê Hương Việt Nam</p>
-                    <a href="#dang-ky" class="btn btn-primary" data-aos="fade-up" data-aos-delay="500"
-                        data-aos-duration="1000">Tham Gia Ngay</a>
-                </div>
-            </div>
+            <!-- Pagination dots -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
 
-            <!-- Sound Control Button -->
-            <button id="soundToggle" class="sound-toggle" aria-label="Toggle sound">
-                <i class="fas fa-volume-mute"></i>
-            </button>
-        </section>
-        
+    <main>
         <!-- Về Chúng tôi -->
         <section id="ve-chung-toi" class="section-padding">
             <div class="container">
@@ -383,6 +436,7 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 
