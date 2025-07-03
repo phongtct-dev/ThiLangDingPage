@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
         grabCursor: true, // Hiển thị con trỏ grab khi hover
         touchRatio: 1, // Độ nhạy của touch
         touchAngle: 45, // Góc touch để kích hoạt swipe
-        
+
         // Keyboard navigation
         keyboard: {
             enabled: true, // Cho phép điều khiển bằng bàn phím
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (activeSlide && activeSlide.classList.contains('video-slide')) {
                     // ===== SLIDE VIDEO =====
                     soundToggle.style.display = 'flex';
-                    
+
                     // ❌ DỪNG AUTOPLAY khi ở slide video
                     if (this.autoplay.running) {
                         this.autoplay.stop();
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     // ===== SLIDE HÌNH ẢNH =====
                     soundToggle.style.display = 'none';
-                    
+
                     // ✅ BẬT AUTOPLAY khi ở slide hình ảnh
                     if (!this.autoplay.running) {
                         // Cấu hình autoplay cho slide hình ảnh
@@ -81,10 +81,10 @@ document.addEventListener('DOMContentLoaded', function () {
             },
 
             // Xử lý khi slider được khởi tạo
-            init: function() {
+            init: function () {
                 const firstSlide = this.slides[this.activeIndex];
                 const soundToggle = document.getElementById('soundToggle');
-                
+
                 // Kiểm tra slide đầu tiên
                 if (firstSlide && firstSlide.classList.contains('video-slide')) {
                     soundToggle.style.display = 'flex';
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ===== XỬ LÝ HEADER TRONG SUỐT =====
     const header = document.getElementById('mainHeader');
     const heroSection = document.getElementById('hero');
-    
+
     // Tạo Intersection Observer để theo dõi Hero Section
     const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
     heroVideo.muted = true;
 
     // Xử lý nút bật/tắt âm thanh
-    soundToggle.addEventListener('click', function() {
+    soundToggle.addEventListener('click', function () {
         if (isMuted) {
             // Bật âm thanh
             heroVideo.muted = false;
@@ -199,22 +199,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Xử lý lỗi video một cách graceful
-    heroVideo.addEventListener('error', function() {
+    heroVideo.addEventListener('error', function () {
         console.warn('Video hero không thể tải. Sử dụng background gradient thay thế.');
         const videoSlide = document.querySelector('.video-slide');
         if (videoSlide) {
             videoSlide.style.background = 'linear-gradient(135deg, #007bff 0%, #0056b3 100%)';
         }
-        
+
         // Ẩn nút sound toggle nếu video không tải được
         soundToggle.style.display = 'none';
     });
 
     // Đảm bảo video phát trên các trình duyệt mobile
-    heroVideo.addEventListener('canplay', function() {
+    heroVideo.addEventListener('canplay', function () {
         // Thử phát video
         const playPromise = heroVideo.play();
-        
+
         if (playPromise !== undefined) {
             playPromise.catch(error => {
                 console.warn('Auto-play bị ngăn chặn:', error);
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Điều chỉnh autoplay delay dựa trên kích thước màn hình
     function adjustSlideshowForDevice() {
         const isMobile = window.innerWidth <= 768;
-        
+
         if (isMobile) {
             // Trên mobile: tăng thời gian autoplay để người dùng có thể đọc nội dung
             heroSwiper.autoplay.delay = 7000;
@@ -265,13 +265,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ===== ACCESSIBILITY IMPROVEMENTS =====
     // Thêm keyboard navigation cho slideshow
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         // Chỉ hoạt động khi slideshow đang trong viewport
         const heroRect = heroSection.getBoundingClientRect();
         const isHeroVisible = heroRect.top < window.innerHeight && heroRect.bottom > 0;
-        
+
         if (isHeroVisible) {
-            switch(e.key) {
+            switch (e.key) {
                 case 'ArrowLeft':
                     e.preventDefault();
                     heroSwiper.slidePrev();

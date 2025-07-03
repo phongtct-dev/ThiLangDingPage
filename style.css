@@ -52,7 +52,10 @@ a:hover {
     color: var(--secondary-color);
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: 'Merriweather', serif;
     margin-bottom: 1rem;
     color: var(--text-color);
@@ -650,11 +653,25 @@ p {
 }
 
 /* Icon placeholders */
-.icon-location::before { content: '📍'; }
-.icon-food::before { content: '🍜'; }
-.icon-culture::before { content: '🎭'; }
-.icon-people::before { content: '👨‍👩‍👧‍👦'; }
-.icon-heart::before { content: '❤️'; }
+.icon-location::before {
+    content: '📍';
+}
+
+.icon-food::before {
+    content: '🍜';
+}
+
+.icon-culture::before {
+    content: '🎭';
+}
+
+.icon-people::before {
+    content: '👨‍👩‍👧‍👦';
+}
+
+.icon-heart::before {
+    content: '❤️';
+}
 
 /* ===== BÀI DỰ THI ===== */
 .submission-grid {
