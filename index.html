@@ -43,7 +43,17 @@
     <main>
         <!-- Hero Section: Phần giới thiệu chính -->
         <section id="hero" class="hero-section">
-            <div class="container">
+            <div class="hero-video-container">
+                <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                    <!-- Fallback for browsers that don't support video -->
+                    Your browser does not support the video tag.
+                </video>
+                <div class="hero-video-overlay"></div>
+            </div>
+            
+            <div class="container hero-content-wrapper">
                 <div class="hero-content">
                     <h1 data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">Hành Trình Quê Hương: Nơi Ký Ức
                         Bắt Đầu</h1>
@@ -52,11 +62,14 @@
                     <a href="#dang-ky" class="btn btn-primary" data-aos="fade-up" data-aos-delay="500"
                         data-aos-duration="1000">Tham Gia Ngay</a>
                 </div>
-                <div class="hero-image" data-aos="zoom-in" data-aos-delay="700" data-aos-duration="1200">
-                    <img src="img/du-lich-viet-nam-9276.jpg" alt="Vietnamese landscape">
-                </div>
             </div>
+
+            <!-- Sound Control Button -->
+            <button id="soundToggle" class="sound-toggle" aria-label="Toggle sound">
+                <i class="fas fa-volume-mute"></i>
+            </button>
         </section>
+        
         <!-- Về Chúng tôi -->
         <section id="ve-chung-toi" class="section-padding">
             <div class="container">

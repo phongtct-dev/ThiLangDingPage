@@ -54,4 +54,72 @@ document.addEventListener('DOMContentLoaded', function () {
             menuToggle.classList.remove('active');
         }
     });
+
+    // Video sound control functionality
+    const heroVideo = document.getElementById('heroVideo');
+    const soundToggle = document.getElementById('soundToggle');
+    const soundIcon = soundToggle.querySelector('i');
+
+    // Initialize video state
+    let isMuted = true;
+    heroVideo.muted = true;
+
+    // Sound toggle functionality
+    soundToggle.addEventListener('click', function() {
+        if (isMuted) {
+            // Unmute the video
+            heroVideo.muted = false;
+            isMuted = false;
+            soundIcon.className = 'fas fa-volume-up';
+            soundToggle.classList.add('unmuted');
+            soundToggle.setAttribute('aria-label', 'Mute sound');
+        } else {
+            // Mute the video
+            heroVideo.muted = true;
+            isMuted = true;
+            soundIcon.className = 'fas fa-volume-mute';
+            soundToggle.classList.remove('unmuted');
+            soundToggle.setAttribute('aria-label', 'Unmute sound');
+        }
+    });
+
+    // Handle video loading errors gracefully
+    heroVideo.addEventListener('error', function() {
+        console.warn('Hero video failed to load. Falling back to gradient background.');
+        const heroSection = document.querySelector('.hero-section');
+        heroSection.style.background = 'linear-gradient(135deg, #007bff 0%, #0056b3 100%)';
+        
+        // Hide the sound toggle if video fails to load
+        soundToggle.style.display = 'none';
+    });
+
+    // Ensure video plays on user interaction (for mobile browsers)
+    heroVideo.addEventListener('canplay', function() {
+        // Try to play the video
+        const playPromise = heroVideo.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.warn('Auto-play was prevented:', error);
+                // Auto-play was prevented, but that's okay for the user experience
+            });
+        }
+    });
+
+    // Pause video when not in viewport to save bandwidth
+    const observerOptions = {
+        threshold: 0.5
+    };
+
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                heroVideo.play().catch(e => console.warn('Video play failed:', e));
+            } else {
+                heroVideo.pause();
+            }
+        });
+    }, observerOptions);
+
+    videoObserver.observe(heroVideo);
 });
