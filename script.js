@@ -52,28 +52,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Events
         on: {
-            slideChange: function () {
-                // Xử lý khi chuyển slide
-                const activeSlide = this.slides[this.activeIndex];
-                const soundToggle = document.getElementById('soundToggle');
-                
-                // Hiển thị/ẩn nút sound toggle dựa trên loại slide
-                if (activeSlide && activeSlide.classList.contains('video-slide')) {
-                    soundToggle.style.display = 'flex';
-                  this.autoplay.stop();
-                } else {
-                    soundToggle.style.display = 'none';
-                   this.autoplay.start();
-                }
+  slideChange: function () {
+    const activeSlide = this.slides[this.activeIndex];
+    const soundToggle = document.getElementById('soundToggle');
 
-                // Refresh AOS animations cho slide mới
-                AOS.refresh();
-            },
-            init: function() {
-                // Khi slider được khởi tạo
-                console.log('Hero slideshow đã được khởi tạo');
-            }
-        }
+    // Ẩn/hiện nút âm thanh tùy slide
+    if (activeSlide && activeSlide.classList.contains('video-slide')) {
+        soundToggle.style.display = 'flex';
+
+        // ❌ Nếu đang ở slide video → dừng autoplay
+        this.autoplay.stop();
+    } else {
+        soundToggle.style.display = 'none';
+
+        // ✅ Nếu đang ở slide ảnh → khởi động lại autoplay
+        this.autoplay.start();
+    }
+
+    // Làm mới AOS nếu có
+    AOS.refresh();
+  },
+}
+
     });
 
     // ===== XỬ LÝ HEADER TRONG SUỐT =====
