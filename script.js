@@ -12,10 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const heroSwiper = new Swiper('.hero-swiper', {
         // Cấu hình cơ bản
         loop: true, // Lặp vô hạn các slide
-        autoplay: {
-            delay: 5000, // Tự động chuyển slide sau 5 giây
-            disableOnInteraction: false, // Không dừng autoplay khi người dùng tương tác
-        },
+        autoplay: false, // Tắt autoplay ban đầu (sẽ bật khi cần)
         effect: 'fade', // Hiệu ứng chuyển slide fade
         fadeEffect: {
             crossFade: true // Hiệu ứng fade mượt mà
@@ -51,32 +48,56 @@ document.addEventListener('DOMContentLoaded', function () {
         },
 
         // Events
-       on: {
-  slideChange: function () {
-    const activeSlide = this.slides[this.activeIndex];
-    const soundToggle = document.getElementById('soundToggle');
+        on: {
+            slideChange: function () {
+                const activeSlide = this.slides[this.activeIndex];
+                const soundToggle = document.getElementById('soundToggle');
 
-    // Ẩn/hiện nút âm thanh tùy slide
-    if (activeSlide && activeSlide.classList.contains('video-slide')) {
-        soundToggle.style.display = 'flex';
+                // Kiểm tra loại slide hiện tại
+                if (activeSlide && activeSlide.classList.contains('video-slide')) {
+                    // ===== SLIDE VIDEO =====
+                    soundToggle.style.display = 'flex';
+                    
+                    // ❌ DỪNG AUTOPLAY khi ở slide video
+                    if (this.autoplay.running) {
+                        this.autoplay.stop();
+                        console.log('🎥 Đang ở slide video - Dừng autoplay');
+                    }
+                } else {
+                    // ===== SLIDE HÌNH ẢNH =====
+                    soundToggle.style.display = 'none';
+                    
+                    // ✅ BẬT AUTOPLAY khi ở slide hình ảnh
+                    if (!this.autoplay.running) {
+                        // Cấu hình autoplay cho slide hình ảnh
+                        this.autoplay.delay = 5000; // 5 giây cho mỗi slide ảnh
+                        this.autoplay.start();
+                        console.log('🖼️ Đang ở slide hình ảnh - Bật autoplay');
+                    }
+                }
 
-        // ❌ Dừng autoplay khi đang ở video
-        this.autoplay.stop();
-    } else {
-        soundToggle.style.display = 'none';
+                // Làm mới hiệu ứng AOS cho slide mới
+                AOS.refresh();
+            },
 
-        // ✅ Tự bật lại autoplay nếu là ảnh
-        if (!this.autoplay.running) {
-            this.autoplay.start();
+            // Xử lý khi slider được khởi tạo
+            init: function() {
+                const firstSlide = this.slides[this.activeIndex];
+                const soundToggle = document.getElementById('soundToggle');
+                
+                // Kiểm tra slide đầu tiên
+                if (firstSlide && firstSlide.classList.contains('video-slide')) {
+                    soundToggle.style.display = 'flex';
+                    console.log('🎬 Khởi tạo với slide video - Autoplay tắt');
+                } else {
+                    soundToggle.style.display = 'none';
+                    // Nếu slide đầu không phải video, bật autoplay
+                    this.autoplay.delay = 5000;
+                    this.autoplay.start();
+                    console.log('🖼️ Khởi tạo với slide hình ảnh - Autoplay bật');
+                }
+            }
         }
-    }
-
-    // Làm mới hiệu ứng AOS cho slide mới
-    AOS.refresh();
-  }
-}
-
-
     });
 
     // ===== XỬ LÝ HEADER TRONG SUỐT =====
@@ -261,10 +282,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 case ' ': // Spacebar
                     e.preventDefault();
-                    if (heroSwiper.autoplay.running) {
-                        heroSwiper.autoplay.stop();
-                    } else {
-                        heroSwiper.autoplay.start();
+                    const currentSlide = heroSwiper.slides[heroSwiper.activeIndex];
+                    // Chỉ toggle autoplay nếu đang ở slide hình ảnh
+                    if (currentSlide && !currentSlide.classList.contains('video-slide')) {
+                        if (heroSwiper.autoplay.running) {
+                            heroSwiper.autoplay.stop();
+                        } else {
+                            heroSwiper.autoplay.start();
+                        }
                     }
                     break;
             }
@@ -281,4 +306,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     console.log('🎉 Hero Slideshow với Video và Hình ảnh đã được khởi tạo thành công!');
+    console.log('📋 Quy tắc autoplay:');
+    console.log('   🎥 Slide video: KHÔNG tự động chuyển');
+    console.log('   🖼️ Slide hình ảnh: TỰ ĐỘNG chuyển sau 5-7 giây');
 });
