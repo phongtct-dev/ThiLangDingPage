@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
 
         // Events
-        on: {
+       on: {
   slideChange: function () {
     const activeSlide = this.slides[this.activeIndex];
     const soundToggle = document.getElementById('soundToggle');
@@ -60,19 +60,22 @@ document.addEventListener('DOMContentLoaded', function () {
     if (activeSlide && activeSlide.classList.contains('video-slide')) {
         soundToggle.style.display = 'flex';
 
-        // ❌ Nếu đang ở slide video → dừng autoplay
+        // ❌ Dừng autoplay khi đang ở video
         this.autoplay.stop();
     } else {
         soundToggle.style.display = 'none';
 
-        // ✅ Nếu đang ở slide ảnh → khởi động lại autoplay
-        this.autoplay.start();
+        // ✅ Tự bật lại autoplay nếu là ảnh
+        if (!this.autoplay.running) {
+            this.autoplay.start();
+        }
     }
 
-    // Làm mới AOS nếu có
+    // Làm mới hiệu ứng AOS cho slide mới
     AOS.refresh();
-  },
+  }
 }
+
 
     });
 
