@@ -60,8 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Hiển thị/ẩn nút sound toggle dựa trên loại slide
                 if (activeSlide && activeSlide.classList.contains('video-slide')) {
                     soundToggle.style.display = 'flex';
+                  this.autoplay.stop();
                 } else {
                     soundToggle.style.display = 'none';
+                   this.autoplay.start();
                 }
 
                 // Refresh AOS animations cho slide mới
