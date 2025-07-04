@@ -673,6 +673,62 @@ p {
     content: '❤️';
 }
 
+/* ===== PARALLAX QUOTE SECTION ===== */
+.parallax-quote-section {
+    position: relative;
+    min-height: 400px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                      url('https://images.pexels.com/photos/2166711/pexels-photo-2166711.jpeg?auto=compress&cs=tinysrgb&w=1920&h=600&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    overflow: hidden;
+}
+
+.parallax-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.4) 0%, rgba(0, 86, 179, 0.6) 100%);
+    z-index: 1;
+}
+
+.parallax-quote-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.quote-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.quote-text {
+    font-family: 'Merriweather', serif;
+    font-size: 2.2rem;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    color: var(--white);
+}
+
+.quote-author {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-style: italic;
+}
+
 /* ===== BÀI DỰ THI ===== */
 .submission-grid {
     display: grid;
@@ -1026,6 +1082,21 @@ p {
         grid-column: span 1;
     }
 
+    /* Parallax Quote Section Mobile */
+    .parallax-quote-section {
+        background-attachment: scroll;
+        min-height: 300px;
+    }
+
+    .quote-text {
+        font-size: 1.6rem;
+        line-height: 1.3;
+    }
+
+    .quote-author {
+        font-size: 1.1rem;
+    }
+
     /* Mobile Navigation */
     .menu-toggle {
         display: flex;
@@ -1125,6 +1196,15 @@ p {
     }
 
     .section-description {
+        font-size: 1rem;
+    }
+
+    .quote-text {
+        font-size: 1.3rem;
+        padding: 40px 15px;
+    }
+
+    .quote-author {
         font-size: 1rem;
     }
 
