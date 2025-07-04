@@ -1,5 +1,5 @@
 /* Nhập font từ Google Fonts để sử dụng cho giao diện */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
 
 /* Định nghĩa các biến CSS để tái sử dụng màu sắc và hiệu ứng */
 :root {
@@ -482,6 +482,139 @@ p {
     height: auto;
     border-radius: 15px;
     box-shadow: var(--shadow-medium);
+}
+
+/* ===== PARALLAX POEM SECTION ===== */
+.parallax-poem-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 120%;
+    background-image: url('https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transform: translateZ(0);
+    will-change: transform;
+    z-index: -3;
+}
+
+.parallax-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(139, 69, 19, 0.4) 30%,
+        rgba(160, 82, 45, 0.3) 60%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+    z-index: -2;
+}
+
+.parallax-grain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, transparent 20%, rgba(255, 255, 255, 0.03) 21%, rgba(255, 255, 255, 0.03) 34%, transparent 35%, transparent),
+        linear-gradient(0deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02));
+    opacity: 0.8;
+    z-index: -1;
+    animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0) }
+    10% { transform: translate(-5%, -10%) }
+    20% { transform: translate(-15%, 5%) }
+    30% { transform: translate(7%, -25%) }
+    40% { transform: translate(-5%, 25%) }
+    50% { transform: translate(-15%, 10%) }
+    60% { transform: translate(15%, 0%) }
+    70% { transform: translate(0%, 15%) }
+    80% { transform: translate(3%, 35%) }
+    90% { transform: translate(-10%, 10%) }
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: var(--white);
+    padding: 0 20px;
+}
+
+.poem-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.poem-text {
+    margin-bottom: 40px;
+}
+
+.poem-line {
+    font-family: 'Crimson Text', serif;
+    font-size: 2.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    opacity: 0.95;
+}
+
+.poem-author {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    margin-top: 30px;
+    position: relative;
+}
+
+.poem-author::before,
+.poem-author::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.poem-author::before {
+    left: -80px;
+}
+
+.poem-author::after {
+    right: -80px;
 }
 
 /* ===== VIDEO SECTION ===== */
@@ -1026,6 +1159,48 @@ p {
         grid-column: span 1;
     }
 
+    /* Parallax poem responsive */
+    .parallax-poem-section {
+        height: auto;
+        min-height: 80vh;
+        padding: 60px 0;
+    }
+
+    .parallax-background {
+        background-attachment: scroll;
+        width: 100%;
+        height: 100%;
+    }
+
+    .poem-container {
+        padding: 40px 20px;
+        margin: 20px;
+    }
+
+    .poem-line {
+        font-size: 1.6rem;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .poem-author {
+        font-size: 1.1rem;
+        margin-top: 25px;
+    }
+
+    .poem-author::before,
+    .poem-author::after {
+        width: 40px;
+    }
+
+    .poem-author::before {
+        left: -50px;
+    }
+
+    .poem-author::after {
+        right: -50px;
+    }
+
     /* Mobile Navigation */
     .menu-toggle {
         display: flex;
@@ -1126,6 +1301,27 @@ p {
 
     .section-description {
         font-size: 1rem;
+    }
+
+    /* Parallax poem mobile */
+    .poem-container {
+        padding: 30px 15px;
+        margin: 10px;
+    }
+
+    .poem-line {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .poem-author {
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+
+    .poem-author::before,
+    .poem-author::after {
+        display: none;
     }
 
     .main-footer .footer-grid {

@@ -243,6 +243,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // Bắt đầu theo dõi video
     videoObserver.observe(heroVideo);
 
+    // ===== XỬ LÝ PARALLAX EFFECT =====
+    const parallaxBackground = document.querySelector('.parallax-background');
+    
+    if (parallaxBackground) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxSection = document.querySelector('.parallax-poem-section');
+            
+            if (parallaxSection) {
+                const sectionTop = parallaxSection.offsetTop;
+                const sectionHeight = parallaxSection.offsetHeight;
+                const windowHeight = window.innerHeight;
+                
+                // Chỉ áp dụng parallax khi section đang hiển thị
+                if (scrolled + windowHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
+                    const yPos = -(scrolled - sectionTop) * 0.5;
+                    parallaxBackground.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                }
+            }
+        });
+    }
+
     // ===== XỬ LÝ RESPONSIVE CHO SLIDESHOW =====
     // Điều chỉnh autoplay delay dựa trên kích thước màn hình
     function adjustSlideshowForDevice() {
@@ -309,4 +331,5 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('📋 Quy tắc autoplay:');
     console.log('   🎥 Slide video: KHÔNG tự động chuyển');
     console.log('   🖼️ Slide hình ảnh: TỰ ĐỘNG chuyển sau 5-7 giây');
+    console.log('🌟 Parallax Poem Section đã được khởi tạo!');
 });
