@@ -15,6 +15,7 @@
     --gradient-secondary: linear-gradient(135deg, #007bff 0%, #71d388 100%);
     --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 /* Reset mặc định để đảm bảo giao diện nhất quán */
@@ -145,8 +146,8 @@ p {
 }
 
 .btn-secondary {
-    background: var(--white);
-    color: var(--primary-color);
+    background: var(--primary-color);
+    color: var(--white);
     border: 2px solid var(--primary-color);
     box-shadow: var(--shadow-light);
 }
@@ -154,8 +155,9 @@ p {
 .btn-secondary:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-medium);
-    background: var(--primary-color);
+    background: #0056b3;
     color: var(--white);
+    border-color: #0056b3;
 }
 
 .btn-nav {
@@ -715,42 +717,117 @@ p {
     border-radius: 15px;
     box-shadow: var(--shadow-light);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .submission-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-medium);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+}
+
+.card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
 }
 
 .submission-card img {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    transition: transform 0.4s ease;
+}
+
+.submission-card:hover img {
+    transform: scale(1.1);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.8) 0%, rgba(0, 86, 179, 0.9) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.submission-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-overlay-content {
+    color: var(--white);
+    text-align: center;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.submission-card:hover .card-overlay-content {
+    transform: translateY(0);
+}
+
+.card-overlay-content i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.card-overlay-content span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .submission-card .card-content {
-    padding: 20px;
+    padding: 25px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.submission-card .card-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25px;
+    right: 25px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.submission-card:hover .card-content::before {
+    transform: scaleX(1);
 }
 
 .submission-card h3 {
     font-size: 1.4rem;
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.submission-card:hover h3 {
+    color: var(--secondary-color);
 }
 
 .submission-card .description {
     font-size: 0.95rem;
     color: var(--light-text-color);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     flex-grow: 1;
+    line-height: 1.6;
 }
 
 .submission-card .author {
@@ -761,12 +838,19 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .submission-card .author .author-info {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.submission-card .author .author-info i {
+    color: var(--primary-color);
+    font-size: 0.9rem;
 }
 
 /* ===== CTA SECTION ===== */
@@ -1009,7 +1093,7 @@ p {
 }
 
 .footer-cta-btn {
-    background: var(--secondary-color);
+    background: var(--primary-color);
     color: var(--white);
     border: none;
     padding: 12px 25px;
@@ -1022,7 +1106,7 @@ p {
 }
 
 .footer-cta-btn:hover {
-    background: #1e7e34;
+    background: #0056b3;
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
