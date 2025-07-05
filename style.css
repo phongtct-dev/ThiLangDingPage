@@ -164,13 +164,13 @@ p {
     padding: 8px 20px;
     font-size: 0.9rem;
     border-radius: 25px;
-    background: var(--secondary-color);
+    background: var(--primary-color);
     color: var(--white);
     box-shadow: none;
 }
 
 .btn-nav:hover {
-    background: #1e7e34;
+    background: #0056b3;
     color: var(--white);
     transform: none;
 }
