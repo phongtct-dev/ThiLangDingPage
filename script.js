@@ -310,3 +310,90 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('   🎥 Slide video: KHÔNG tự động chuyển');
     console.log('   🖼️ Slide hình ảnh: TỰ ĐỘNG chuyển sau 5-7 giây');
 });
+
+
+// ===== XỬ LÝ CHUYỂN ĐỔI MỤC TIÊU CUỘC THI =====
+const prevGoalBtn = document.getElementById('prevGoalBtn');
+const nextGoalBtn = document.getElementById('nextGoalBtn');
+const goalItems = document.querySelectorAll('#muc-tieu .goal-item');
+let currentGoalIndex = 0;
+const goalsPerPage = 3;
+
+function updateGoals() {
+    goalItems.forEach((item, index) => {
+        item.style.display = 'none'; // Ẩn tất cả trước
+    });
+    if (currentGoalIndex === 0) {
+        // Ban đầu hoặc sau khi quay lại, hiển thị thẻ 1, 2, 3
+        goalItems[0].style.display = 'block';
+        goalItems[1].style.display = 'block';
+        goalItems[2].style.display = 'block';
+    } else if (currentGoalIndex === 1) {
+        // Khi click "Sang Trái", hiển thị thẻ 2, 3, 4
+        goalItems[1].style.display = 'block';
+        goalItems[2].style.display = 'block';
+        goalItems[3].style.display = 'block';
+    }
+}
+
+nextGoalBtn.addEventListener('click', () => {
+    if (currentGoalIndex === 0) {
+        currentGoalIndex = 1; // Chuyển sang trạng thái thẻ 2, 3, 4
+        updateGoals();
+    }
+});
+
+prevGoalBtn.addEventListener('click', () => {
+    if (currentGoalIndex === 1) {
+        currentGoalIndex = 0; // Quay lại trạng thái thẻ 1, 2, 3
+        updateGoals();
+    }
+});
+
+// Khởi tạo hiển thị 3 mục tiêu đầu tiên
+updateGoals();
+
+///
+
+
+// ===== XỬ LÝ CHUYỂN ĐỔI CẢM XÚC CỘNG ĐỒNG =====
+const prevFeedbackBtn = document.getElementById('prevFeedbackBtn');
+const nextFeedbackBtn = document.getElementById('nextFeedbackBtn');
+const feedbackItems = document.querySelectorAll('#cam-xuc-cong-dong .emotion-card');
+const totalItems = feedbackItems.length;
+let currentIndex = 0;
+const itemsPerPage = 3;
+
+function updateFeedback() {
+    feedbackItems.forEach((item, index) => {
+        item.style.display = 'none'; // Ẩn tất cả trước
+        item.style.opacity = '0'; // Đặt opacity về 0 trước khi chuyển
+        item.style.transform = 'translateY(20px)'; // Chuẩn bị dịch xuống
+    });
+
+    // Hiển thị 3 thẻ với hiệu ứng
+    for (let i = 0; i < itemsPerPage; i++) {
+        const displayIndex = (currentIndex + i) % totalItems;
+        const item = feedbackItems[displayIndex];
+        item.style.display = 'flex';
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, 50); // Delay 50ms để hiệu ứng hoạt động
+    }
+}
+
+nextFeedbackBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalItems;
+    updateFeedback();
+});
+
+prevFeedbackBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+    updateFeedback();
+});
+
+// Khởi tạo hiển thị 3 thẻ đầu tiên (0, 1, 2)
+updateFeedback();
+
+

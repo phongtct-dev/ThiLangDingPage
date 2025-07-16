@@ -136,13 +136,15 @@ p {
     background: linear-gradient(45deg, rgb(34, 88, 206), rgb(147, 51, 234));
     color: var(--white);
     box-shadow: var(--shadow-light);
+    border: 2px solid var(--accent-color); /* Thêm viền màu vàng *//*---------------------------------------------------------------------------*/
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    color: var(--white);
+    color: var(--accent-color);/* Chuyển Chữ Màu Vàng màu vàng *//*---------------------------------------------------------------------------*/
     box-shadow: var(--shadow-medium);
     background: linear-gradient(45deg, rgb(13, 79, 201), rgb(88, 28, 135));
+    
 }
 
 .btn-secondary {
@@ -201,7 +203,7 @@ p {
 
 .main-header .logo a {
     font-family: 'Merriweather', serif;
-    font-size: 1.8rem;
+    font-size: 1.5rem; /*điều chỉnh ---------------------------------------------------------------------------------*/
     font-weight: 700;
     color: var(--white);
     transition: color 0.3s ease;
@@ -1545,3 +1547,173 @@ p {
         font-size: 0.9rem;
     }
 }
+
+/*Nút Chuyển Trái Phải---------------------------------------------------------------------------------------------------------------------*/
+.nav-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.nav-buttons .btn-nav {
+    margin: 0 10px; /* Khoảng cách giữa hai nút */
+}
+
+.btn-nav {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px; /* Viền tròn */
+    background: linear-gradient(45deg, #4facfe, #00f2fe); /* Gradient xanh */
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.btn-nav:hover {
+    transform: translateY(-2px); /* Hiệu ứng nhấc lên khi hover */
+    background: linear-gradient(45deg, #00f2fe, #4facfe); /* Gradient ngược khi hover */
+}
+
+.btn-nav:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 242, 254, 0.5); /* Điểm nhấn khi focus */
+}
+
+
+
+/*Nut Trai Phai------------------------------------------------------------------*/
+.feedback-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+
+.emotions-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.emotions-grid {
+    display: flex;
+    gap: 30px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+    overflow-x: hidden;
+    position: relative; /* Để áp dụng hiệu ứng mờ */
+}
+
+.emotion-card {
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    box-sizing: border-box;
+    display: none; /* Ban đầu ẩn, JS sẽ hiển thị */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Hiệu ứng mờ và chuyển động */
+    opacity: 0; /* Ban đầu mờ */
+    transform: translateY(20px); /* Dịch xuống một chút */
+}
+
+.emotion-card[style*="display: flex"] {
+    opacity: 1; /* Khi hiển thị, trở về trong suốt */
+    transform: translateY(0); /* Quay về vị trí ban đầu */
+}
+
+.btn-custom-nav {
+    position: absolute;
+    top: -50px; /* Điều chỉnh vị trí nút */
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255, 215, 0, 0.7); /* Viền vàng */
+    border-radius: 50%; /* Nút tròn */
+    background: rgba(255, 255, 255, 0.1); /* Nền mờ (white với độ trong suốt) */
+    backdrop-filter: blur(5px); /* Hiệu ứng mờ nền */
+    color: #FFD700; /* Màu chữ vàng */
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, background 0.3s, border-color 0.3s;
+    padding: 0;
+}
+
+#prevFeedbackBtn {
+    left: 0; /* Nút Sang Trái bên trái */
+}
+
+#nextFeedbackBtn {
+    right: 0; /* Nút Sang Phải bên phải */
+}
+
+.btn-custom-nav:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2); /* Nền mờ khi hover */
+    border-color: rgba(255, 215, 0, 1);
+    color: #FFFACD;
+}
+
+.btn-custom-nav:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    color: #FFD700;
+}
+
+/*phần mobile */
+/* Media Query cho mobile (dưới 768px) */
+@media (max-width: 768px) {
+    .feedback-wrapper {
+        padding: 10px 0;
+    }
+    
+    .main-header .logo .a {
+        font-size: 1.5rem;
+    }
+
+    .emotions-container {
+        width: 90%; /* Thu hẹp container trên mobile */
+        margin: 0 auto;
+    }
+
+    .emotions-grid {
+        flex-wrap: wrap; /* Cho phép xuống dòng */
+        gap: 15px; /* Giảm khoảng cách giữa các thẻ */
+        margin: 10px 0;
+    }
+
+    .emotion-card {
+        flex: 0 0 100%; /* Mỗi thẻ chiếm toàn chiều rộng */
+        max-width: 100%; /* Đảm bảo không vượt quá */
+        margin-bottom: 15px; /* Khoảng cách dưới mỗi thẻ */
+    }
+
+    .btn-custom-nav {
+        position: static; /* Loại bỏ vị trí tuyệt đối */
+        width: 30px; /* Giảm kích thước nút */
+        height: 30px;
+        font-size: 12px; /* Giảm kích thước biểu tượng */
+        margin: 5px; /* Khoảng cách giữa nút */
+    }
+
+    #prevFeedbackBtn, #nextFeedbackBtn {
+        display: inline-flex; /* Hiển thị nút theo hàng ngang */
+    }
+
+    .feedback-wrapper {
+        flex-direction: row; /* Đặt nút và grid theo hàng ngang */
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .emotions-container {
+        flex-grow: 1; /* Grid chiếm phần còn lại */
+    }
+}
+
+/**/
